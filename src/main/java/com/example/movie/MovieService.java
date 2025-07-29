@@ -32,9 +32,19 @@ public class MovieService implements MovieRepository {
     // Do not modify the above code
 
     // Write your code here
+    int uniqueId = 6;
+
     @Override
     public List<Movie> getMovies(){
         Collection<Movie> movies = movieList.values();
         return new ArrayList<>(movies);
+    }
+
+    @Override
+    public Movie addMovie(Movie movie){
+        movie.setMovieId(uniqueId);
+        movieList.put(uniqueId,movie);
+        uniqueId=uniqueId+1;
+        return movie;
     }
 }
