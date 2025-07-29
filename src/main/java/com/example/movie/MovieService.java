@@ -10,6 +10,8 @@ package com.example.movie;
 
 import com.example.movie.Movie;
 import com.example.movie.MovieRepository;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import java.util.*;
 import org.springframework.stereotype.Service;
@@ -47,4 +49,14 @@ public class MovieService implements MovieRepository {
         uniqueId=uniqueId+1;
         return movie;
     }
+
+    @Override
+    public Movie getMovieById(int movieId) {
+        Movie movie = movieList.get(movieId);
+        if (movie == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found");
+        }
+        return movie;
+    }
+
 }
