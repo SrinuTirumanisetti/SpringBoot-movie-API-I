@@ -12,9 +12,11 @@ import com.example.movie.Movie;
 import com.example.movie.MovieRepository;
 
 import java.util.*;
+import org.springframework.stereotype.Service;
 
 // Do not modify the below code
 
+@Service
 public class MovieService implements MovieRepository {
 
     private static HashMap<Integer, Movie> movieList = new HashMap<>();
@@ -30,5 +32,9 @@ public class MovieService implements MovieRepository {
     // Do not modify the above code
 
     // Write your code here
-
+    @Override
+    public List<Movie> getMovies(){
+        Collection<Movie> movies = movieList.values();
+        return new ArrayList<>(movies);
+    }
 }
