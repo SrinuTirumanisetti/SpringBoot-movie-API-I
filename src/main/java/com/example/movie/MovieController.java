@@ -7,12 +7,7 @@ import java.util.*;
 @RestController
 public class MovieController {
 
-    private final MovieService service;
-
-    @Autowired
-    public MovieController(MovieService service) {  // Constructor injection
-        this.service = service;
-    }
+    MovieService service = new MovieService();
 
     @GetMapping("/movies")
     public List<Movie> getMovies() {
@@ -32,5 +27,10 @@ public class MovieController {
     @PutMapping("/movies/{movieId}")
     public Movie updateMovie(@RequestBody Movie movie,@PathVariable("movieId") int movieId){
         return service.updateMovie(movieId,movie);
+    }
+
+    @DeleteMapping("/movies/{movieId}")
+    public void deleteMovie(@PathVariable("movieId") int movieId){
+        service.deleteMovie(movieId);
     }
 }

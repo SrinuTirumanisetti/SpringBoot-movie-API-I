@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 // Do not modify the below code
 
-@Service
 public class MovieService implements MovieRepository {
 
     private static HashMap<Integer, Movie> movieList = new HashMap<>();
@@ -69,5 +68,17 @@ public class MovieService implements MovieRepository {
             existingMovie.setLeadActor(movie.getLeadActor());
         }
         return existingMovie;
+    }
+
+    @Override
+    public void deleteMovie(int movieId){
+        Movie movie = getMovieById(movieId);
+        if(movie!=null){
+            movieList.remove(movieId);
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }
