@@ -59,4 +59,15 @@ public class MovieService implements MovieRepository {
         return movie;
     }
 
+    @Override
+    public Movie updateMovie(int movieId,Movie movie){
+        Movie existingMovie = getMovieById(movieId);
+        if(movie.getMovieName()!=null){
+            existingMovie.setMovieName(movie.getMovieName());
+        }
+        if(movie.getLeadActor()!=null){
+            existingMovie.setLeadActor(movie.getLeadActor());
+        }
+        return existingMovie;
+    }
 }
